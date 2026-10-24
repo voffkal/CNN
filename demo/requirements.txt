@@ -1,0 +1,9 @@
+# torch and torchvision are not pinned: the ZeroGPU image ships its own build, and the checkpoint
+# is a plain state_dict that loads on any recent version. gradio comes from sdk_version in README.md.
+# `spaces` is needed only for the never-called @spaces.GPU stub in app.py.
+spaces>=0.30
+torch
+torchvision
+matplotlib
+numpy
+pillow
