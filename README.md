@@ -1,5 +1,8 @@
 # Car damage classification — does the CNN see the damage?
 
+**Live demo:** https://huggingface.co/spaces/voffkal/CNN-Car-Damage — upload a car photo, get
+the prediction and a Grad-CAM heat map of where the model looks.
+
 Binary classifier for car photos: **damaged** or **whole**. PyTorch on Apple Silicon (MPS):
 a small CNN trained from scratch against a fine-tuned MobileNetV3, plus a check for a shortcut
 hidden in the data. Notebooks are in Russian.
@@ -69,11 +72,14 @@ pip install torch torchvision scikit-learn statsmodels pandas matplotlib jupyter
 jupyter lab car_damage_PyTorch_v2.ipynb
 ```
 
-Runs on Apple MPS or CPU; the 20 training runs take about 18 minutes on an M-series Mac. The
-notebook saves the final model to `models/`; the Gradio demo in `demo/` loads it:
+Runs on Apple MPS or CPU; the 20 training runs take about 18 minutes on an M-series Mac.
+
+The trained model is included — `demo/car_damage_mobilenetv3_2026-10-25.pt` (17 MB, the same
+weights the live demo serves) — so the Gradio app runs locally without retraining:
 
 ```bash
-cp models/car_damage_mobilenetv3_2026-10-25.pt demo/
 pip install -r demo/requirements.txt gradio
 python demo/app.py
 ```
+
+Retraining writes a fresh checkpoint to `models/`; copy it into `demo/` to serve it.
